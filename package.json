@@ -9,9 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/firebase-adapter": "^1.0.3",
     "@next/font": "13.1.1",
+    "@types/firebase": "^3.2.1",
+    "axios": "^1.2.2",
+    "csv-parser": "^3.0.0",
+    "daisyui": "^2.46.1",
+    "firebase": "^9.15.0",
+    "fs": "^0.0.1-security",
+    "js-file-download": "^0.4.12",
     "next": "13.1.1",
+    "next-auth": "^4.18.8",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-firebaseui": "^6.0.0",
+    "react-use": "^17.4.0",
+    "swr": "^2.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "postcss-nested": "^6.0.0",
+    "tailwindcss": "^3.2.4"
   }
 }
