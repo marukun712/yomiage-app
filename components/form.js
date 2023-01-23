@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import Image from 'next/image'
-import { useEffect } from 'react';
 import csv from 'csv-parser'
+import GetAudio from '../components/getaudio'
 var stream = csv()
 
 export default function Form() {
     const [Text, SetText] = useState('')
     const [addText, setAddText] = useState([]);
+    const [FetchText, SetFetchText] = useState('')
 
     stream.on('data', function (data) {
         console.log(data)
         setAddText((prevState) => ([...prevState, { 'word': data.Word }]));
-
     })
 
     const onClickAddText = async () => {
@@ -24,6 +24,7 @@ export default function Form() {
     }
 
     async function ImportFromCSV(e) {
+        setAddText([])
         let file = await e.target.files[0]
         const fileReader = new FileReader();
 
@@ -44,7 +45,6 @@ export default function Form() {
             link.click();
             URL.revokeObjectURL(link.href);
         }
-
     }
 
     async function ImportData(e) {
@@ -66,6 +66,7 @@ export default function Form() {
                         return (
                             <>
                                 <input type="text" placeholder={text.word} className="input input-bordered p-50 w-full input-lg flex-col" value={text.word} onChange={(e) => setAddText((prevState) => prevState.map((value, index) => (index === num ? { 'word': e.target.value } : value)))} />
+                                <button className='btn btn-primary' onClick={() => SetFetchText(text.word)}>合成</button>
                             </>
 
                         )
@@ -98,6 +99,8 @@ export default function Form() {
                 <input type="text" placeholder="テキストを入力..." className="input input-bordered p-50 input-lg w-screen flex" value={Text} onChange={function (e) { SetText(e.target.value) }} />
                 <button className="btn" onClick={onClickAddText}>追加</button>
             </div>
+
+            <GetAudio text={FetchText}></GetAudio>
 
         </div>
     )
