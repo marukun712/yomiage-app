@@ -1,18 +1,13 @@
 import { useState } from 'react';
 import Image from 'next/image'
-import csv from 'csv-parser'
+import { parse } from 'csv-parse/sync';
 import GetAudio from '../components/getaudio'
-var stream = csv()
+import Link from 'next/link';
 
 export default function Form() {
     const [Text, SetText] = useState('')
     const [addText, setAddText] = useState([]);
     const [FetchText, SetFetchText] = useState('')
-
-    stream.on('data', function (data) {
-        console.log(data)
-        setAddText((prevState) => ([...prevState, { 'word': data.Word }]));
-    })
 
     const onClickAddText = async () => {
         if (Text === '') {
@@ -31,7 +26,11 @@ export default function Form() {
         fileReader.readAsText(file);
         fileReader.onload = e => {
             const content = e.target.result;
-            stream.write(content)
+            const records = parse(content, { columns: true, delimiter: '\t' });
+            for (const record of records) {
+                console.log(records)
+                setAddText((prevState) => ([...prevState, { 'word': record.Word }]));
+            }
         };
     }
 
@@ -74,13 +73,15 @@ export default function Form() {
                 </div>
 
                 <div className='h-1/2 justify-end'>
-                    <Image src='/tsukuyomi.png' width={500} height={1000}></Image>
-                    <p className='px-5'>つくよみちゃん</p>
+                    <Link href={'/tsukuyomi'}>
+                        <Image src='/tsukuyomi.png' width={500} height={1000}></Image>
+                        <p className='px-5'>つくよみちゃん</p>
+                    </Link>
                 </div>
 
             </div>
 
-            <div className='space-x-7 px-5'>
+            <div className='md:space-x-7 md:px-5 space-y-5'>
                 <button className='btn btn-primary' onClick={ExportData}>プロジェクトを保存...</button>
                 <label for="json_upload" className='btn btn-primary'>
                     プロジェクトをインポート...

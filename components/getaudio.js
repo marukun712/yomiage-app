@@ -16,7 +16,7 @@ export default function GetAudio(props) {
             <input type="checkbox" id="loading" className="modal-toggle" />
             <div className="modal modal-open modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">An error has occurred.</h3>
+                    <h3 className="font-bold text-lg">サーバーとの通信に失敗しました。</h3>
                 </div>
             </div>
         </>
@@ -59,7 +59,7 @@ export default function GetAudio(props) {
 
     if (props.text) {
         return (
-            <div className='py-20 px-5 space-x-10 flex'>
+            <div className='py-20 px-5 space-x-10 md:flex'>
                 <button className='btn btn-secondary rounded-full w-32 h-32' onClick={() => PlayAudio()}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-14 h-14">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
                 </svg>
@@ -69,7 +69,7 @@ export default function GetAudio(props) {
                 </svg>
                 </button>
 
-                <div className='flex'>
+                <div className='flex py-10'>
                     <p>テキストファイルを出力する</p>
                     <input type="checkbox" onChange={() => SetTextDownload(!TextDownload)} className="checkbox" />
                 </div>
