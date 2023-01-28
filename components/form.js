@@ -19,16 +19,14 @@ export default function Form() {
     }
 
     async function ImportFromCSV(e) {
-        setAddText([])
         let file = await e.target.files[0]
         const fileReader = new FileReader();
 
         fileReader.readAsText(file);
         fileReader.onload = e => {
-            const content = e.target.result;
-            const records = parse(content, { columns: true, delimiter: '\t' });
-            for (const record of records) {
-                console.log(records)
+            let content = e.target.result;
+            let records = parse(content, { columns: true, delimiter: '\t' });
+            for (let record of records) {
                 setAddText((prevState) => ([...prevState, { 'word': record.Word }]));
             }
         };
@@ -36,9 +34,9 @@ export default function Form() {
 
     function ExportData() {
         if (process.browser) {
-            const data = JSON.stringify(addText);
-            const blob = new Blob([data], { type: 'application/json' })
-            const link = document.createElement('a');
+            let data = JSON.stringify(addText);
+            let blob = new Blob([data], { type: 'application/json' })
+            let link = document.createElement('a');
             link.download = 'export.json';
             link.href = URL.createObjectURL(blob);
             link.click();
@@ -52,7 +50,7 @@ export default function Form() {
 
         fileReader.readAsText(file, "UTF-8");
         fileReader.onload = e => {
-            const content = e.target.result;
+            let content = e.target.result;
             setAddText(JSON.parse(content));
         };
     }
@@ -83,18 +81,16 @@ export default function Form() {
 
             <div className='md:space-x-7 md:px-5 space-y-5'>
                 <button className='btn btn-primary' onClick={ExportData}>プロジェクトを保存...</button>
-                <label for="json_upload" className='btn btn-primary'>
+                <label htmlFor="json_upload" className='btn btn-primary'>
                     プロジェクトをインポート...
                     <input type="file" id="json_upload" className='hidden' onChange={ImportData} accept='.json'></input>
                 </label>
 
-
-                <label for="csv_upload" className='btn btn-primary'>
+                <label htmlFor="csv_upload" className='btn btn-primary'>
                     CSVから台本を読み込み...
                     <input type="file" id="csv_upload" className='hidden' onChange={ImportFromCSV} accept='.csv'></input>
                 </label>
             </div>
-
 
             <div className='input space-x-9 py-10 w-screen flex'>
                 <input type="text" placeholder="テキストを入力..." className="input input-bordered p-50 input-lg w-screen flex" value={Text} onChange={function (e) { SetText(e.target.value) }} />

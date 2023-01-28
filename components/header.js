@@ -19,7 +19,12 @@ export default function Header() {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <Link href='/userdata'><li><a>ユーザーデータ</a></li></Link>
-                            <Link href='/index'><li><a>ユーザー辞書設定</a></li></Link>
+                            <li>
+                                <a className="justify-between">
+                                    辞書設定
+                                    <span className="badge">近日公開</span>
+                                </a>
+                            </li>
 
                             <button onClick={() => signOut()}><li><a>Sign Out</a></li></button>
                         </ul>
@@ -34,7 +39,7 @@ export default function Header() {
                 <a className="btn btn-ghost text-slate-700 normal-case text-xl">読み上げアプリ(仮)</a>
             </div>
             <div className="flex-none">
-                <button class="btn btn-primary" onClick={() => signIn()}>ログイン</button>
+                <button className="btn btn-primary" onClick={() => signIn()}>ログイン</button>
             </div>
         </div >
     );

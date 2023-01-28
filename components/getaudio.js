@@ -12,24 +12,25 @@ export default function GetAudio(props) {
     );
 
     if (error) return (
-        <>
-            <input type="checkbox" id="loading" className="modal-toggle" />
-            <div className="modal modal-open modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">サーバーとの通信に失敗しました。</h3>
+        <div>
+            <div className="toast toast-end">
+                <div className="alert alert-error">
+                    <div>
+                        <span>サーバーとの通信に失敗しました。</span>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     );
     if (!data) return (
-        <>
+        <div>
             <input type="checkbox" id="loading" className="modal-toggle" />
             <div className="modal modal-open modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Loading...</h3>
                 </div>
             </div>
-        </>
+        </div>
     );
 
     var audio = new Audio(URL.createObjectURL(data))
@@ -41,15 +42,15 @@ export default function GetAudio(props) {
 
     function Download(text) {
         if (TextDownload) {
-            const blob = new Blob([text], { type: "text/plain" });
-            const link = document.createElement('a');
+            let blob = new Blob([text], { type: "text/plain" });
+            let link = document.createElement('a');
             link.download = `${text}.txt`;
             link.href = URL.createObjectURL(blob);
             link.click();
             URL.revokeObjectURL(link.href);
         }
         if (process.browser) {
-            const link = document.createElement('a');
+            let link = document.createElement('a');
             link.download = `${text}.wav`;
             link.href = blob;
             link.click();
