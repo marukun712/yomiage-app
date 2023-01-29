@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image'
 import { parse } from 'csv-parse/sync';
-import GetAudio from '../components/getaudio'
+import VoiceVox from '../components/voicevox'
 import Link from 'next/link';
 
 export default function Form() {
@@ -71,9 +71,9 @@ export default function Form() {
                 </div>
 
                 <div className='h-1/2 justify-end'>
-                    <Link href={'/tsukuyomi'}>
-                        <Image src='/tsukuyomi.png' width={500} height={1000}></Image>
-                        <p className='px-5'>つくよみちゃん</p>
+                    <Link href={'/metan'}>
+                        <Image src='/metan.png' width={450} height={800}></Image>
+                        <p className='px-5'>四国めたん</p>
                     </Link>
                 </div>
 
@@ -97,7 +97,7 @@ export default function Form() {
                 <button className="btn" onClick={onClickAddText}>追加</button>
             </div>
 
-            <GetAudio text={FetchText}></GetAudio>
+            <VoiceVox text={FetchText}></VoiceVox>
 
         </div>
     )
