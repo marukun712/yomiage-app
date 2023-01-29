@@ -1,4 +1,4 @@
-export default function Tsukuyomi() {
+export default function Metan() {
     return (
         <div className="p-10 space-y-5">
             <h1 className="text-lg">
