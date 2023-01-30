@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image'
 import { parse } from 'csv-parse/sync';
-import VoiceVox from '../components/voicevox'
+import GetAudio from '../components/getaudio'
 import Link from 'next/link';
 
 export default function Form() {
@@ -73,7 +73,7 @@ export default function Form() {
                 <div className='h-1/2 justify-end'>
                     <Link href={'/metan'}>
                         <Image src='/metan.png' width={450} height={800}></Image>
-                        <p className='px-5'>四国めたん</p>
+                        <p className='px-5'>四国めたん(VOICEVOX)</p>
                     </Link>
                 </div>
 
@@ -86,6 +86,8 @@ export default function Form() {
                     <input type="file" id="json_upload" className='hidden' onChange={ImportData} accept='.json'></input>
                 </label>
 
+                <Link href='/sample.csv'><button className='btn btn-primary'>台本記入用のサンプルCSVをダウンロード...</button></Link>
+
                 <label htmlFor="csv_upload" className='btn btn-primary'>
                     CSVから台本を読み込み...
                     <input type="file" id="csv_upload" className='hidden' onChange={ImportFromCSV} accept='.csv'></input>
@@ -97,7 +99,7 @@ export default function Form() {
                 <button className="btn" onClick={onClickAddText}>追加</button>
             </div>
 
-            <VoiceVox text={FetchText}></VoiceVox>
+            <GetAudio text={FetchText}></GetAudio>
 
         </div>
     )

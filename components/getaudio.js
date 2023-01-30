@@ -7,7 +7,7 @@ export default function GetAudio(props) {
     const [TextDownload, SetTextDownload] = useState(false);
 
     const { data, error } = useSWR(
-        `http://127.0.0.1:8000/api?text=${props.text}`,
+        `http://160.251.15.165:2200/voicevox?text=${props.text}`,
         fetcher
     );
 
@@ -41,15 +41,15 @@ export default function GetAudio(props) {
     }
 
     function Download(text) {
-        if (TextDownload) {
-            let blob = new Blob([text], { type: "text/plain" });
-            let link = document.createElement('a');
-            link.download = `${text}.txt`;
-            link.href = URL.createObjectURL(blob);
-            link.click();
-            URL.revokeObjectURL(link.href);
-        }
         if (process.browser) {
+            if (TextDownload) {
+                let blob = new Blob([text], { type: "text/plain" });
+                let link = document.createElement('a');
+                link.download = `${text}.txt`;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+                URL.revokeObjectURL(link.href);
+            }
             let link = document.createElement('a');
             link.download = `${text}.wav`;
             link.href = blob;
