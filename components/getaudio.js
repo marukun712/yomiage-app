@@ -7,7 +7,7 @@ export default function GetAudio(props) {
     const [TextDownload, SetTextDownload] = useState(false);
 
     const { data, error } = useSWR(
-        `http://160.251.15.165:2200/voicevox?text=${props.text}`,
+        `https://160.251.15.165:2200/voicevox?text=${props.text}`,
         fetcher
     );
 
