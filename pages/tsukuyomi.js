@@ -1,6 +1,11 @@
+import Head from 'next/head'
+
 export default function Tsukuyomi() {
     return (
         <div className="p-10 space-y-5">
+            <Head>
+                <title>つくよみちゃんのキャラクター情報</title>
+            </Head>
             <h1 className="text-lg">
                 本ソフトウェアの音声合成には、フリー素材キャラクター「つくよみちゃん」が無料公開している音声データを使用しています。
             </h1>

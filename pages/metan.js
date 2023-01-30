@@ -1,6 +1,11 @@
+import Head from 'next/head'
+
 export default function Metan() {
     return (
         <div className="p-10 space-y-5">
+            <Head>
+                <title>四国めたんのキャラクター情報</title>
+            </Head>
             <h1 className="text-lg">
                 VOICEVOX:四国めたん
             </h1>

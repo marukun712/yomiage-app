@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 
@@ -8,6 +9,9 @@ export default function Data() {
         console.log(session)
         return (
             <div>
+                <Head>
+                    <title>{session.user.name}さんのユーザー情報</title>
+                </Head>
                 <h1 className='text-2xl px-5 py-5'>ユーザー情報</h1>
                 <div className="avatar flex justify-center">
                     <div className="w-24 rounded-full">
@@ -25,6 +29,9 @@ export default function Data() {
     }
     return (
         <>
+            <Head>
+                <title>ユーザー情報</title>
+            </Head>
             ログインしてください。
         </>
     );
