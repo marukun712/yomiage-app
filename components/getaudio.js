@@ -7,7 +7,7 @@ export default function GetAudio(props) {
     const [TextDownload, SetTextDownload] = useState(false);
 
     const { data, error } = useSWR(
-        `https://marukun-dev.com:2200/voicevox?text=${props.text}`,
+        `https://marukun-dev.com/voicevox/api?text=${props.text}`,
         fetcher
     );
 
